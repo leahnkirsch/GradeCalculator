@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"/></head>
+</head>
+
+<body>
+<header>
+    <h1> Grade Calculator </h1>
+</header>
+
+<table border = "1" cellspacing="2" cellpadding="3" align="center">
+    <tr>
+        <td></td>
+        <td> Grades </td>
+        <td> Weight </td>
+    </tr>
+    <tr>
+        <td>Homework</td>
+        <td><input id = "homework" type = "text" size = "25" value = "80, 90, 100"></td>
+        <td><input id = "homeworkWeight" type = "text" size = "25" value = "20"></td>
+    </tr>
+    <tr>
+        <td>Quizzes</td>
+        <td><input id = "quizzes" type = "text" size = "25" value = "80, 90, 100"></td>
+        <td><input id = quizWeight" type = "text" size = "25" value = "20"></td>
+    </tr>
+    <tr>
+        <td>Tests</td>
+        <td><input id = "tests" type = "text" size = "25" value = "80, 90, 100"></td>
+        <td><input id = testWeight" type = "text" size = "25" value = "15"></td>
+    </tr>
+    <tr>
+        <td>Midterm</td>
+        <td><input id = "midterm" type = "text" size = "25" value = "80, 90, 100"></td>
+        <td><input id = midtermWeight" type = "text" size = "25" value = "30"></td>
+    </tr>
+</table>
+<br>
+<h3>What percent is your final worth?</h3>
+<input id = "finalWeight" type = "text" size = "10" value = "15"><br><br>
+<button id = "current" onclick = "calculateCurrentGrade()"> Calculate Current Grade</button> <br>
+
+<div id="Current Grade"></div>
+What grade do you want in this class?<br><select id="gradeWanted" onchange="calculateGradeWanted()">
+    <option value="0"> A </option>
+    <option value="1"> B </option>
+    <option value="2"> C </option>
+    <option value="3"> D </option>
+    <option value="4"> F </option>
+<br>
+    <button onclick = "CalculateGradeNeeded()">Calculate final exam score needed</button>
+
+</body>
+</html>
