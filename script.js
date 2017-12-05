@@ -1,97 +1,82 @@
-function calculateCurrentGrade(){
-    // var homeworkAvg = avergeArrary (convertString(document.getElementById("homework").value));
-    // var quizzesAvg = averageArray(convertString(document.getElementById("quizzes").value));
-    // var testAvg = averageArray(convertString(document.getElementById("tests").value));
-    // var midtermAvg = averageArray(convertString(document.getElementById("midterm").value));
-    //
-    // tableColor(document.getElementById("homework"),homeworkAvg);
-    // tableColor(document.getElementById("quizzes"),quizzesAvg);
-    // tableColor(document.getElementById("tests"),testsAvg);
-
+function calculateCurrentGrade() {
     // homework
     var hw = arrayFromString(document.getElementById("homework").value);
-    var hwArray = convertStringtoNumArr(hw);
-    var avgHw = averageArrary(hwArray);
+    var hwArray = convertStringToNumArr(hw);
+    var avgHw = averageArray(hwArray);
     var hwWeight = document.getElementById("homeworkWeight").value;
     var hwWeightAvg = weightAvg(avgHw, hwWeight);
-    colorRowByGrade ("qRow", avgHw);
+    // colorRowByGrade("qRow", avgHw);
 
 
     // quizzes
     var quizzes = arrayFromString(document.getElementById("quizzes").value);
-    var quizArray = convertStringtoNumArr(quiz);
-    var avgQuizzes = averageArrary(quizArr);
+    var quizArray = convertStringToNumArr(quizzes);
+    var avgQuizzes = averageArray(quizArray);
     var quizWeight = document.getElementById("quizWeight").value;
     var quizWeightAvg = weightAvg(avgQuizzes, quizWeight);
-    colorRowByGrade ("qRow", avgQuizzes);
+    // colorRowByGrade("qRow", avgQuizzes);
 
     // tests
     var tests = arrayFromString(document.getElementById("tests").value);
-    var testsArray = convertStringtoNumArr(tests);
-    var avgTests = averageArrary(testsArray);
+    var testsArray = convertStringToNumArr(tests);
+    var avgTests = averageArray(testsArray);
     var testWeight = document.getElementById("testWeight").value;
     var testWeightAvg = weightAvg(avgTests, testWeight);
-    colorRowByGrade ("qRow", avgTests);
+    // colorRowByGrade("qRow", avgTests);
 
     // midterm
     var midterm = arrayFromString(document.getElementById("midterm").value);
-    var midtermArray = convertStringtoNumArr(midterm);
-    var avgMidterm = averageArrary(midtermArray);
+    var midtermArray = convertStringToNumArr(midterm);
+    var avgMidterm = averageArray(midtermArray);
     var midtermWeight = document.getElementById("midtermWeight").value;
     var midtermWeightAvg = weightAvg(avgMidterm, midtermWeight);
-    colorRowByGrade ("qRow", avgMidterm);
+    // colorRowByGrade("qRow", avgMidterm);
 
-    if(isNaN(parseInt(document.getElementById("finalWeight").value)) == true){
-        document.getElementById("currentGrade").innerHTML
+    if (isNaN(parseInt(document.getElementById("finalWeight").value)) == true) {
+        document.getElementById("currentGrade").innerHTML = "Error! Please enter a valid number for your final weight.";
         return;
     }
 
-    var currentGrade = math.round((quizWeightAvg + testWeightAvg + hwWeightAvg + midtermWeightAvg)/(document.getElementById("finalWeight").value)/100 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    var currentGrade = Math.round(((quizWeightAvg + testWeightAvg + hwWeightAvg + midtermWeightAvg) / (100 - (document.getElementById("finalWeight").value))) * 100);
+    document.getElementById("current").innerHTML = "Your current grade is: " + currentGrade;
+    console.log(currentGrade);
 }
 
+function arrayFromString (str) {
+    var result = str.split(",");
+    return result;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-function convertString (strArr){
-    var numArray= [];
-    for (var i = 0; i<strArr.length; i++){
-        finalArrary[i] = parseInt(newArrary[i]);
+function convertStringToNumArr(strArr){
+    var numArr = [];
+    for (var i = 0; i <strArr.length; i++){
+        if (isNaN(strArr[i]) == true){
+            return;
+        }
+        numArr.push(parseInt(strArr[i]));
     }
-    return finalArray;
+    return numArr;
 }
 
-function avgArray
+function averageArray(arr){
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++){
+        if (isNaN(arr[i]) == true){
+            return;
+        }
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
 
-
-function calculateCurrentGrade(){
-
+function weightAvg(num, weight){
+    return num * weight/100;
 }
 
 
-function  calculateGradeNeeded(){
-
+function calculateGradeNeeded(){
+    document.getElementById("want").innerHTML = "You need a " + gradeNeeded + " percent."
 }
+
+
+

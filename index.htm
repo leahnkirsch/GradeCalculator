@@ -25,33 +25,37 @@
     <tr>
         <td>Quizzes</td>
         <td><input id = "quizzes" type = "text" size = "25" value = "80, 90, 100"></td>
-        <td><input id = quizWeight" type = "text" size = "25" value = "20"></td>
+        <td><input id = "quizWeight" type = "text" size = "25" value = "20"></td>
     </tr>
     <tr>
         <td>Tests</td>
         <td><input id = "tests" type = "text" size = "25" value = "80, 90, 100"></td>
-        <td><input id = testWeight" type = "text" size = "25" value = "15"></td>
+        <td><input id = "testWeight" type = "text" size = "25" value = "15"></td>
     </tr>
     <tr>
         <td>Midterm</td>
         <td><input id = "midterm" type = "text" size = "25" value = "80, 90, 100"></td>
-        <td><input id = midtermWeight" type = "text" size = "25" value = "30"></td>
+        <td><input id = "midtermWeight" type = "text" size = "25" value = "30"></td>
     </tr>
 </table>
-<br>
+
 <h3>What percent is your final worth?</h3>
 <input id = "finalWeight" type = "text" size = "10" value = "15"><br><br>
-<button id = "current" onclick = "calculateCurrentGrade()"> Calculate Current Grade</button> <br>
-
-<div id="Current Grade"></div>
-What grade do you want in this class?<br><select id="gradeWanted" onchange="calculateGradeWanted()">
-    <option value="0"> A </option>
-    <option value="1"> B </option>
-    <option value="2"> C </option>
-    <option value="3"> D </option>
-    <option value="4"> F </option>
+<button id = "current" onclick = "calculateCurrentGrade()"> Calculate Current Grade</button>
 <br>
-    <button onclick = "CalculateGradeNeeded()">Calculate final exam score needed</button>
+<br>
+<div id="Current Grade"></div>
+What grade do you want in this class?<br>
+<select id="gradeWanted" onchange="calculateGradeWanted()">
+    <option value="0"> A (90+) </option>
+    <option value="1"> B (80-89) </option>
+    <option value="2"> C (70-79) </option>
+    <option value="3"> D (60-69) </option>
+    <option value="4"> F (50 or below)</option>
+</select>
+<br>
+<br>
+<button id = "want" onclick = "CalculateGradeNeeded()"> Calculate Grade Needed!</button>
 
 </body>
 </html>
