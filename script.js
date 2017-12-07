@@ -5,7 +5,7 @@ function calculateCurrentGrade() {
     var avgHw = averageArray(hwArray);
     var hwWeight = document.getElementById("homeworkWeight").value;
     var hwWeightAvg = weightAvg(avgHw, hwWeight);
-    // colorRowByGrade("qRow", avgHw);
+    colorRows("HW", avgHw);
 
 
     // quizzes
@@ -14,7 +14,7 @@ function calculateCurrentGrade() {
     var avgQuizzes = averageArray(quizArray);
     var quizWeight = document.getElementById("quizWeight").value;
     var quizWeightAvg = weightAvg(avgQuizzes, quizWeight);
-    // colorRowByGrade("qRow", avgQuizzes);
+    colorRows("Quiz", avgQuizzes);
 
     // tests
     var tests = arrayFromString(document.getElementById("tests").value);
@@ -22,7 +22,7 @@ function calculateCurrentGrade() {
     var avgTests = averageArray(testsArray);
     var testWeight = document.getElementById("testWeight").value;
     var testWeightAvg = weightAvg(avgTests, testWeight);
-    // colorRowByGrade("qRow", avgTests);
+    colorRows("Test", avgTests);
 
     // midterm
     var midterm = arrayFromString(document.getElementById("midterm").value);
@@ -30,7 +30,7 @@ function calculateCurrentGrade() {
     var avgMidterm = averageArray(midtermArray);
     var midtermWeight = document.getElementById("midtermWeight").value;
     var midtermWeightAvg = weightAvg(avgMidterm, midtermWeight);
-    // colorRowByGrade("qRow", avgMidterm);
+    colorRows("Midterms", avgMidterm);
 
     if (isNaN(parseInt(document.getElementById("finalWeight").value)) == true) {
         document.getElementById("currentGrade").innerHTML = "Error! Please enter a valid number for your final weight.";
@@ -38,8 +38,9 @@ function calculateCurrentGrade() {
     }
 
     var currentGrade = Math.round(((quizWeightAvg + testWeightAvg + hwWeightAvg + midtermWeightAvg) / (100 - (document.getElementById("finalWeight").value))) * 100);
-    document.getElementById("current").innerHTML = "Your current grade is: " + currentGrade;
+    document.getElementById("current").innerHTML = "Your current grade is " + currentGrade + "% ";
     console.log(currentGrade);
+    return currentGrade;
 }
 
 function arrayFromString (str) {
@@ -75,8 +76,30 @@ function weightAvg(num, weight){
 
 
 function calculateGradeNeeded(){
-    document.getElementById("want").innerHTML = "You need a " + gradeNeeded + " percent."
+    var currentGrade = calculateCurrentGrade();
+    var gradeWanted = parseInt(document.getElementById("gradeWanted").value);
+    var finalWeight = parseInt(document.getElementById("finalWeight").value)/100;
+    var finalGradeNeeded = parseInt(gradeWanted -(((currentGrade)*(1-finalWeight)))) / (finalWeight);
+    document.getElementById("want").innerHTML = "You need a " + finalGradeNeeded + " percent."
 }
 
 
-
+function colorRows (row, grade){
+    console.log(row);
+    console.log(grade);
+    if (grade >= 90){
+        document.getElementById(row).style.background = "green";
+    }
+    if (grade >= 80 && grade < 90){
+        document.getElementById(row).style.background = "greenYellow";
+    }
+    if (grade >= 70 && grade < 80){
+        document.getElementById(row).style.background = "yellow";
+    }
+    if (grade >= 60 && grade < 70){
+        document.getElementById(row).style.background = "orange";
+    }
+    if (grade < 60){
+        document.getElementById(row).style.background = "red";
+    }
+}
