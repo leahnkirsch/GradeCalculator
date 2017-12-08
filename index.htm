@@ -11,7 +11,7 @@
     <h1> Grade Calculator </h1>
 </header>
 
-<table border = "1" cellspacing="2" cellpadding="3" align="center">
+<table border = "1" cellspacing="3" cellpadding="5" align="center">
     <tr>
         <td></td>
         <td> Grades </td>
@@ -44,7 +44,8 @@
 <button id = "current" onclick = "calculateCurrentGrade()"> Calculate Current Grade</button>
 <br>
 <br>
-<div id="Current Grade"></div>
+<div id="Current Grade" ></div>
+<br>
 What grade do you want in this class?<br>
 <select id="gradeWanted" onchange="calculateGradeWanted()">
     <option value="90"> A (90+) </option>
@@ -57,6 +58,7 @@ What grade do you want in this class?<br>
 <br>
 
 <button id = "want" onclick = "calculateGradeNeeded()"> Calculate Grade Needed!</button>
+
 
 </body>
 </html>

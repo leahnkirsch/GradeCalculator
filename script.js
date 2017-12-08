@@ -1,4 +1,5 @@
 function calculateCurrentGrade() {
+
     // homework
     var hw = arrayFromString(document.getElementById("homework").value);
     var hwArray = convertStringToNumArr(hw);
@@ -32,13 +33,24 @@ function calculateCurrentGrade() {
     var midtermWeightAvg = weightAvg(avgMidterm, midtermWeight);
     colorRows("Midterms", avgMidterm);
 
-    if (isNaN(parseInt(document.getElementById("finalWeight").value)) == true) {
-        document.getElementById("currentGrade").innerHTML = "Error! Please enter a valid number for your final weight.";
-        return;
+    if (isNaN(parseInt(document.getElementById("finalWeight").value)) === true) {
+        var ErrorOne =  document.getElementById("Current Grade").innerHTML = "Error! Please enter a valid number for your final weight.";
+        return ErrorTwo;
+    }
+
+    if (parseInt(document.getElementById("homework").value) >150 || parseInt(document.getElementById("tests").value) >150 || parseInt(document.getElementById("quizzes").value) > 150 || parseInt(document.getElementById("midterm").value) > 150) {
+        var ErrorTwo = document.getElementById("Current Grade").innerHTML = "Error! Please enter a valid number for your grades received.";
+        return ErrorOne;
+    }
+
+    if ((parseInt(document.getElementById("quizWeight").value) + parseInt(document.getElementById("homeworkWeight").value) + parseInt(document.getElementById("testWeight").value) + parseInt(document.getElementById("midtermWeight").value) +
+            parseInt(document.getElementById("finalWeight").value)) !== 100){
+        var ErrorThree = document.getElementById("Current Grade").innerHTML = "Error! Make sure all of your weights add up to 100.";
+        return ErrorThree;
     }
 
     var currentGrade = Math.round(((quizWeightAvg + testWeightAvg + hwWeightAvg + midtermWeightAvg) / (100 - (document.getElementById("finalWeight").value))) * 100);
-    document.getElementById("current").innerHTML = "Your current grade is " + currentGrade + "% ";
+    document.getElementById("Current Grade").innerHTML = "Your current grade is " + currentGrade + "% ";
     console.log(currentGrade);
     return currentGrade;
 }
@@ -51,7 +63,7 @@ function arrayFromString (str) {
 function convertStringToNumArr(strArr){
     var numArr = [];
     for (var i = 0; i <strArr.length; i++){
-        if (isNaN(strArr[i]) == true){
+        if (isNaN(strArr[i]) === true){
             return;
         }
         numArr.push(parseInt(strArr[i]));
@@ -62,7 +74,7 @@ function convertStringToNumArr(strArr){
 function averageArray(arr){
     var sum = 0;
     for (var i = 0; i < arr.length; i++){
-        if (isNaN(arr[i]) == true){
+        if (isNaN(arr[i]) === true){
             return;
         }
         sum += arr[i];
@@ -79,7 +91,7 @@ function calculateGradeNeeded(){
     var currentGrade = calculateCurrentGrade();
     var gradeWanted = parseInt(document.getElementById("gradeWanted").value);
     var finalWeight = parseInt(document.getElementById("finalWeight").value)/100;
-    var finalGradeNeeded = parseInt(gradeWanted -(((currentGrade)*(1-finalWeight)))) / (finalWeight);
+    var finalGradeNeeded = Math.round((gradeWanted -(((currentGrade)*(1-finalWeight)))) / (finalWeight));
     document.getElementById("want").innerHTML = "You need a " + finalGradeNeeded + " percent."
 }
 

@@ -7,6 +7,7 @@ body {
     background-color: lightgrey;
     background-image: url(https://naldzgraphics.net/wp-content/uploads/2012/08/28-Pristine.jpg);
     background-size:51%;
+    margin-bottom: 40px;
 }
 
 
@@ -22,3 +23,6 @@ button {
 
 }
 
+#CurrentGrade {
+    font-size: 500px;
+}
